@@ -1,990 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>LuliDigital AI – Buy Back Your Time</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="LuliDigital AI builds AI systems and software for busy people who want to work smarter, not longer." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --card: #101828;
-      --accent: #36cfc9;
-      --accent-soft: rgba(54, 207, 201, 0.16);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --radius-lg: 18px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #1e293b 0, #020617 40%, #000 100%);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(20px);
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.6));
-      border-bottom: 1px solid rgba(31, 41, 55, 0.7);
-    }
-
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .branding {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-badge {
-      width: 34px;
-      height: 34px;
-      border-radius: 14px;
-      background: radial-gradient(circle at 20% 0, #a855f7, #22d3ee);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      color: white;
-      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.5);
-    }
-
-    .brand-text-main {
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .brand-text-sub {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      padding: 4px 0;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(54, 207, 201, 0.3);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 13px;
-      color: var(--accent);
-    }
-
-    .nav-cta span {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    main {
-      flex: 1;
-    }
-
-    .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 18px 32px;
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.6fr);
-      gap: 34px;
-      align-items: center;
-    }
-
-    @media (max-width: 860px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-        padding-top: 26px;
-      }
-      header {
-        position: static;
-      }
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .eyebrow-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(54, 207, 201, 0.25);
-    }
-
-    .hero-title {
-      font-size: clamp(32px, 5vw, 40px);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .hero-gradient {
-      background: linear-gradient(to right, #e5e7eb, #a5b4fc, #22d3ee);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 15px;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 22px;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .pill {
-      font-size: 11px;
-      padding: 6px 12px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      color: #e5e7eb;
-      backdrop-filter: blur(16px);
-      background: rgba(15, 23, 42, 0.7);
-    }
-
-    .pill-accent {
-      border-color: rgba(54, 207, 201, 0.7);
-      background: var(--accent-soft);
-      color: #e0fdfa;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .btn {
-      border-radius: var(--radius-pill);
-      padding: 10px 18px;
-      font-size: 13px;
-      border: 1px solid transparent;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(to right, #22c55e, #22d3ee);
-      color: #020617;
-      box-shadow: var(--shadow-soft);
-      font-weight: 600;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 20px 50px rgba(34, 211, 238, 0.55);
-    }
-
-    .btn-secondary {
-      background: rgba(15, 23, 42, 0.9);
-      border-color: rgba(148, 163, 184, 0.6);
-      color: #e5e7eb;
-    }
-
-    .btn-secondary:hover {
-      border-color: rgba(54, 207, 201, 0.8);
-      background: rgba(15, 23, 42, 1);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border-color: rgba(148, 163, 184, 0.35);
-      color: var(--muted);
-    }
-
-    .btn-ghost:hover {
-      border-color: rgba(54, 207, 201, 0.7);
-      color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.65);
-    }
-
-    .helper-text {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .hero-right {
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.12), rgba(15, 23, 42, 1));
-      padding: 18px 18px 20px;
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-right-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.2fr);
-      gap: 12px;
-      align-items: stretch;
-    }
-
-    @media (max-width: 600px) {
-      .hero-right-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .mini-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .big-number {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .big-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .metric-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      margin-bottom: 6px;
-      color: var(--muted);
-    }
-
-    .metric-row strong {
-      color: #e5e7eb;
-      font-weight: 500;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      font-size: 11px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: #e5e7eb;
-      margin-bottom: 8px;
-    }
-
-    .chip-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
-    }
-
-    .mini-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.92);
-      padding: 12px;
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .mini-card strong {
-      color: #e5e7eb;
-      font-weight: 500;
-    }
-
-    .stacked-label {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 3px;
-    }
-
-    .stacked-value {
-      font-size: 13px;
-      color: #e5e7eb;
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
-
-    .badge-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      font-size: 10px;
-    }
-
-    .badge {
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-    }
-
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px 18px 8px;
-    }
-
-    .section-header {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    .section-subtitle {
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 540px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    @media (max-width: 960px) {
-      .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 700px) {
-      .grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .card {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.88));
-      padding: 14px 14px 16px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
-    }
-
-    .card-header-label {
-      font-size: 11px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 6px;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .card-body {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .card-list {
-      list-style: none;
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .card-list li {
-      position: relative;
-      padding-left: 14px;
-      margin-bottom: 4px;
-    }
-
-    .card-list li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--accent);
-      font-size: 12px;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 2px;
-    }
-
-    .tag {
-      font-size: 10px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-    }
-
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
-      font-size: 11px;
-    }
-
-    @media (max-width: 900px) {
-      .process-steps {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 600px) {
-      .process-steps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .step {
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(15, 23, 42, 0.92);
-      padding: 10px;
-    }
-
-    .step-number {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .step-title {
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-
-    .step-body {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .contact-section {
-      padding-bottom: 40px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
-      gap: 18px;
-    }
-
-    @media (max-width: 800px) {
-      .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .contact-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(12, 18, 33, 0.98));
-      padding: 16px 16px 18px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .contact-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .contact-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .contact-body {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 14px;
-      max-width: 460px;
-    }
-
-    .contact-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 12px 18px 18px;
-      font-size: 11px;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-    }
-
-    .footer-links a:hover {
-      color: var(--accent);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuliDigital AI – Buy Back Your Time</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0f172a;
+            color: #eee;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #22d3ee;
+        }
+
+        .hero {
+            padding: 80px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            margin-top: 16px;
+            font-size: 20px;
+            color: #94a3b8;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            margin-top: 25px;
+            background: #22d3ee;
+            color: #0f172a;
+            padding: 14px 26px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: #0ea5e9;
+        }
+
+        .section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 34px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: auto;
+            font-size: 16px;
+        }
+
+        .grid {
+            margin-top: 50px;
+            display: grid;
+            gap: 30px;
+        }
+
+        /* VISUAL SERVICES GRID */
+        .visual-services-grid {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 26px;
+        }
+
+        .visual-card {
+            background: rgba(15, 23, 42, 0.92);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 20px;
+            padding: 26px;
+            box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.25);
+            text-align: left;
+            transition: transform 0.2s ease;
+        }
+
+        .visual-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(54, 207, 201, 0.55);
+        }
+
+        .visual-icon {
+            width: 50px;
+            margin-bottom: 18px;
+        }
+
+        .visual-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .visual-body {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+
+        .visual-list {
+            list-style: none;
+            color: #9ca3af;
+            font-size: 14px;
+            padding-left: 0;
+        }
+
+        .visual-list li {
+            margin-bottom: 7px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .visual-list li::before {
+            content: "•";
+            color: #22d3ee;
+            position: absolute;
+            left: 0;
+        }
+
+        /* How We Work */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step-card {
+            padding: 26px;
+            background: #1e293b;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 40px;
+            color: #94a3b8;
+        }
+
+        .contact-box {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 40px;
+        }
+
+        .contact-box a {
+            color: #22d3ee;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="page">
-    <!-- NAV -->
-    <header>
-      <div class="nav">
-        <div class="branding">
-          <div class="logo-badge">LU</div>
-          <div>
-            <div class="brand-text-main">LuliDigital AI</div>
-            <div class="brand-text-sub">AI & Software for Busy Teams</div>
-          </div>
-        </div>
-        <div class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#process">How we work</a>
-          <a href="#contact">Contact</a>
-          <a href="https://digitalmarketing.lulidigital.com" target="_blank" rel="noopener">Marketing Services</a>
-          <a class="nav-cta" href="https://wa.me/27602551513" target="_blank" rel="noopener">
-            WhatsApp us
-            <span>Mon–Sat</span>
-          </a>
-        </div>
-      </div>
-    </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div>
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Built for busy professionals
-          </div>
-          <h1 class="hero-title">
-            Buy back your time with
-            <span class="hero-gradient">AI systems that actually work.</span>
-          </h1>
-          <p class="hero-subtitle">
-            We design AI assistants, internal tools, and data systems that quietly handle the repetitive work—so you and your team can focus on what really matters.
-          </p>
+<header>
+    <div class="logo">LuliDigital AI</div>
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#work">How we work</a>
+        <a href="#contact">Contact</a>
+        <a href="https://digitalmarketing.lulidigital.com">Marketing Services</a>
+        <a href="https://wa.me/27602551513">WhatsApp us</a>
+    </nav>
+</header>
 
-          <div class="hero-tags">
-            <div class="pill pill-accent">AI assistants & workflow automation</div>
-            <div class="pill">RAG knowledge bases</div>
-            <div class="pill">Custom internal tools & mini-SaaS</div>
-            <div class="pill">Data mining & insights</div>
-          </div>
 
-          <div class="hero-ctas">
-            <a class="btn btn-primary" href="https://wa.me/27602551513" target="_blank" rel="noopener">
-              💬 Chat with us on WhatsApp
-            </a>
-            <a class="btn btn-secondary" href="#services">
-              View AI services
-            </a>
-            <a class="btn btn-ghost" href="https://digitalmarketing.lulidigital.com" target="_blank" rel="noopener">
-              Explore digital marketing →
-            </a>
-          </div>
+<!-- HERO -->
+<section class="hero">
+    <h1>AI & Software for Busy Teams</h1>
+    <p>We build AI assistants, internal tools, mini-SaaS, and automation systems that buy back your time.</p>
+    <a href="https://wa.me/27602551513" class="btn-primary">Talk to us on WhatsApp</a>
+</section>
 
-          <div class="helper-text">
-            Share how your day looks now. We’ll show you what can be automated in plain language.
-          </div>
-        </div>
 
-        <!-- HERO RIGHT METRICS -->
-        <aside class="hero-right">
-          <div class="hero-right-grid">
-            <div>
-              <div class="mini-title">Time & workload</div>
-              <div class="big-number">2–4 hrs</div>
-              <div class="big-label">Average time saved per person per day after automation.</div>
+<!-- SERVICES -->
+<section id="services" class="section">
+    <h2 class="section-title">What We Build</h2>
+    <p class="section-subtitle">Clean, powerful, and workflow-ready AI systems designed for real businesses.</p>
 
-              <div class="mini-card">
-                <strong>Common bottlenecks we remove:</strong>
-                <ul class="card-list">
-                  <li>Repeating the same answers all day</li>
-                  <li>Manual updates in spreadsheets</li>
-                  <li>Searching for information in old chats & docs</li>
-                </ul>
-              </div>
+    <div class="grid visual-services-grid">
 
-              <div class="chip">
-                <span class="chip-dot"></span>
-                Built to sit quietly in your workflow, not replace your whole stack.
-              </div>
-            </div>
-
-            <div>
-              <div class="stacked-label">Works across professions</div>
-              <div class="stacked-value">
-                Clinics · Retail · Law · Education · Real estate · Agencies · NGOs · More
-              </div>
-
-              <div class="badge-strip">
-                <div class="badge">AI assistants</div>
-                <div class="badge">RAG knowledge bases</div>
-                <div class="badge">Mini-SaaS tools</div>
-                <div class="badge">Dashboards</div>
-                <div class="badge">Data mining</div>
-                <div class="badge">Presentations & proposals</div>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- SERVICES -->
-      <section id="services" class="section">
-        <div class="section-header">
-          <h2 class="section-title">What we build</h2>
-          <p class="section-subtitle">
-            We focus on one question: “Where are you losing time every day?” Then we design AI and tools to quietly remove that friction.
-          </p>
-        </div>
-
-        <div class="grid">
-          <!-- AI Assistants -->
-          <article class="card">
-            <div class="card-header-label">01 · AI Assistants & Automation</div>
-            <h3 class="card-title">Reduce repetitive work with AI assistants</h3>
-            <p class="card-body">
-              Custom AI helpers that handle FAQs, draft responses, organize information, and move data between your tools.
-            </p>
-            <ul class="card-list">
-              <li>Auto replies to common questions (email, chat, WhatsApp)</li>
-              <li>Document & form drafting (contracts, notes, instructions)</li>
-              <li>Summarising long messages, chats, and PDFs</li>
-              <li>Connecting your tools: calendar, CRM, sheets, inbox</li>
+        <!-- 01 AI -->
+        <article class="visual-card">
+            <img src="https://raw.githubusercontent.com/ikatyang/emoji-cheat-sheet/master/src/assets/robot.png" class="visual-icon">
+            <h3 class="visual-title">AI Assistants & Automation</h3>
+            <p class="visual-body">Your daily repetitive tasks handled automatically.</p>
+            <ul class="visual-list">
+                <li>Auto replies & FAQs</li>
+                <li>Document + form drafting</li>
+                <li>Summaries of chats, emails & PDFs</li>
             </ul>
-            <div class="tag-row">
-              <span class="tag">Busy teams</span>
-              <span class="tag">Service providers</span>
-              <span class="tag">Operations</span>
-            </div>
-          </article>
+        </article>
 
-          <!-- RAG -->
-          <article class="card">
-            <div class="card-header-label">02 · RAG Knowledge Bases</div>
-            <h3 class="card-title">Let your team “chat” with your own documents</h3>
-            <p class="card-body">
-              A private assistant trained on your manuals, PDFs, SOPs, policies, and product info. Ask a question, get an answer with references.
-            </p>
-            <ul class="card-list">
-              <li>Upload policies, SOPs, product sheets, training docs</li>
-              <li>Staff & new hires ask questions instead of asking managers</li>
-              <li>Configurable access (internal only or client-facing)</li>
-              <li>Ideal for HR, sales, support, training, compliance</li>
+        <!-- 02 RAG -->
+        <article class="visual-card">
+            <img src="https://raw.githubusercontent.com/ikatyang/emoji-cheat-sheet/master/src/assets/open_file_folder.png" class="visual-icon">
+            <h3 class="visual-title">RAG Knowledge Bases</h3>
+            <p class="visual-body">Let your team “chat” with your documents.</p>
+            <ul class="visual-list">
+                <li>Upload your SOPs & PDFs</li>
+                <li>Instant answers with references</li>
+                <li>Great for HR, sales & training</li>
             </ul>
-            <div class="tag-row">
-              <span class="tag">RAG systems</span>
-              <span class="tag">Faster onboarding</span>
-              <span class="tag">Single source of truth</span>
-            </div>
-          </article>
+        </article>
 
-          <!-- SaaS / Internal tools -->
-          <article class="card">
-            <div class="card-header-label">03 · Mini-SaaS & Internal Tools</div>
-            <h3 class="card-title">Your own lightweight software instead of chaos</h3>
-            <p class="card-body">
-              Move from “WhatsApp + spreadsheets + memory” to clean dashboards and tools built around your actual workflow.
-            </p>
-            <ul class="card-list">
-              <li>Dashboards for tasks, cases, clients, orders, or bookings</li>
-              <li>Internal tools for approvals, requests, and tracking</li>
-              <li>Client portals for files, invoices, progress updates</li>
-              <li>Mini-CRM: leads, follow-ups, and communication history</li>
+        <!-- 03 MINI SAAS -->
+        <article class="visual-card">
+            <img src="https://raw.githubusercontent.com/ikatyang/emoji-cheat-sheet/master/src/assets/gear.png" class="visual-icon">
+            <h3 class="visual-title">Mini-SaaS & Internal Tools</h3>
+            <p class="visual-body">Software built around your real workflow.</p>
+            <ul class="visual-list">
+                <li>Dashboards for tasks & clients</li>
+                <li>Client portals & progress</li>
+                <li>Mini-CRM for leads</li>
             </ul>
-            <div class="tag-row">
-              <span class="tag">Operations</span>
-              <span class="tag">Teams</span>
-              <span class="tag">Process visibility</span>
-            </div>
-          </article>
+        </article>
 
-          <!-- Data mining -->
-          <article class="card">
-            <div class="card-header-label">04 · Data Mining & Insights</div>
-            <h3 class="card-title">Turn messy data into clear decisions</h3>
-            <p class="card-body">
-              We collect, clean, and visualise your data so you can see what’s working, what’s wasting time, and where to focus.
-            </p>
-            <ul class="card-list">
-              <li>Clean up messy spreadsheets & exports</li>
-              <li>Pull data from websites, systems, or reports</li>
-              <li>Dashboards for sales, demand, performance, patterns</li>
-              <li>Simple insight summaries: “Here’s what’s happening”</li>
+        <!-- 04 DATA MINING -->
+        <article class="visual-card">
+            <img src="https://raw.githubusercontent.com/ikatyang/emoji-cheat-sheet/master/src/assets/chart_increasing.png" class="visual-icon">
+            <h3 class="visual-title">Data Mining & Insights</h3>
+            <p class="visual-body">Turn messy data into clear decisions.</p>
+            <ul class="visual-list">
+                <li>Clean & restructure data</li>
+                <li>Automated dashboards</li>
+                <li>Insights without guesswork</li>
             </ul>
-            <div class="tag-row">
-              <span class="tag">Data-driven decisions</span>
-              <span class="tag">Profit focus</span>
-              <span class="tag">Visibility</span>
-            </div>
-          </article>
+        </article>
 
-          <!-- AI presentation maker -->
-          <article class="card">
-            <div class="card-header-label">05 · AI Presentation & Proposal Maker</div>
-            <h3 class="card-title">From idea to deck in minutes</h3>
-            <p class="card-body">
-              AI-powered generators for presentations and proposals based on a short brief instead of hours of manual work.
-            </p>
-            <ul class="card-list">
-              <li>Investor decks & pitches</li>
-              <li>Client proposals & quotes</li>
-              <li>Training or report summaries</li>
-              <li>Export to shareable formats</li>
+        <!-- 05 PRESENTATION MAKER -->
+        <article class="visual-card">
+            <img src="https://raw.githubusercontent.com/ikatyang/emoji-cheat-sheet/master/src/assets/memo.png" class="visual-icon">
+            <h3 class="visual-title">AI Presentation Maker</h3>
+            <p class="visual-body">Full presentations created in minutes.</p>
+            <ul class="visual-list">
+                <li>Investor decks</li>
+                <li>Client proposals</li>
+                <li>Training slides</li>
             </ul>
-            <div class="tag-row">
-              <span class="tag">Sales</span>
-              <span class="tag">Management</span>
-              <span class="tag">Workshops</span>
-            </div>
-          </article>
+        </article>
 
-          <!-- Custom builds -->
-          <article class="card">
-            <div class="card-header-label">06 · Custom Builds</div>
-            <h3 class="card-title">If it saves time, we’ll design it</h3>
-            <p class="card-body">
-              If you have a specific workflow, we map it out and build exactly what fits your team—no bloated features.
-            </p>
-            <ul class="card-list">
-              <li>We start from your actual day-to-day work</li>
-              <li>We avoid replacing tools you already love</li>
-              <li>We prioritise clarity and ease of use</li>
-              <li>We document everything for your team</li>
+        <!-- 06 CUSTOM BUILDS -->
+        <article class="visual-card">
+            <img src="https://raw.githubusercontent.com/ikatyang/emoji-cheat-sheet/master/src/assets/light_bulb.png" class="visual-icon">
+            <h3 class="visual-title">Custom AI Builds</h3>
+            <p class="visual-body">If it saves time, we’ll design it.</p>
+            <ul class="visual-list">
+                <li>Workflow-specific AI</li>
+                <li>Easy for your team</li>
+                <li>Built from your real needs</li>
             </ul>
-            <div class="tag-row">
-              <span class="tag">Custom systems</span>
-              <span class="tag">Workflow-first</span>
-              <span class="tag">Team adoption</span>
-            </div>
-          </article>
-        </div>
-      </section>
+        </article>
 
-      <!-- PROCESS -->
-      <section id="process" class="section">
-        <div class="section-header">
-          <h2 class="section-title">How we work together</h2>
-          <p class="section-subtitle">
-            Simple, structured, and designed for people who already don’t have time for another complicated project.
-          </p>
-        </div>
+    </div>
+</section>
 
-        <div class="process-steps">
-          <div class="step">
-            <div class="step-number">Step 01</div>
-            <div class="step-title">Quick call or WhatsApp audit</div>
-            <div class="step-body">
-              You explain how your workday looks now. We listen and ask, “Where does your time actually go?”
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-number">Step 02</div>
-            <div class="step-title">Identify automation wins</div>
-            <div class="step-body">
-              We highlight tasks that will save the most time if automated—without forcing new platforms.
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-number">Step 03</div>
-            <div class="step-title">Design & build</div>
-            <div class="step-body">
-              We build AI assistants, RAG systems, or tools around your existing workflow and tools.
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-number">Step 04</div>
-            <div class="step-title">Test with real work</div>
-            <div class="step-body">
-              We test the system with real messages, real documents, and real tasks—then refine.
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-number">Step 05</div>
-            <div class="step-title">Train & support</div>
-            <div class="step-body">
-              Short trainings, simple guides, and support while your team gets comfortable using the new systems.
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="section contact-section">
-        <div class="contact-grid">
-          <div class="contact-card">
-            <div class="contact-label">Get in touch</div>
-            <div class="contact-title">Let’s make your workday lighter.</div>
-            <p class="contact-body">
-              Tell us what a “typical busy day” looks like for you. We’ll point out what can be automated and suggest a simple starting point—no heavy tech talk.
-            </p>
+<!-- HOW WE WORK -->
+<section id="work" class="section">
+    <h2 class="section-title">How We Work</h2>
+    <p class="section-subtitle">A simple, fast, and practical approach to AI & automation.</p>
 
-            <div class="hero-ctas">
-              <a class="btn btn-primary" href="https://wa.me/27602551513" target="_blank" rel="noopener">
-                💬 WhatsApp LuliDigital AI
-              </a>
-              <a class="btn btn-secondary" href="mailto:contact.lulidigital@gmail.com">
-                ✉️ Email us
-              </a>
-            </div>
+    <div class="steps">
+        <div class="step-card">1. We study your workflow & bottlenecks</div>
+        <div class="step-card">2. We choose what saves the most time</div>
+        <div class="step-card">3. We build the assistants or tools</div>
+        <div class="step-card">4. You test it on real tasks</div>
+        <div class="step-card">5. We refine & train your team</div>
+    </div>
+</section>
 
-            <div class="contact-row">
-              <span>Prefer marketing support?</span>
-              <a href="https://digitalmarketing.lulidigital.com" target="_blank" rel="noopener" class="btn btn-ghost">
-                Visit our digital marketing studio →
-              </a>
-            </div>
-          </div>
 
-          <div class="contact-card">
-            <div class="contact-label">What you can send us</div>
-            <ul class="card-list">
-              <li>A short voice note describing your current workflow</li>
-              <li>Screenshots of your spreadsheets or dashboards</li>
-              <li>Examples of repetitive tasks you’re tired of doing</li>
-              <li>Any “I wish this part could run itself” thoughts</li>
-            </ul>
-            <p class="card-body" style="margin-top:6px;">
-              From there, we’ll propose a practical AI or software setup that fits your current tools and team size.
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
+<!-- CONTACT -->
+<section id="contact" class="section">
+    <h2 class="section-title">Talk to Us</h2>
+    <div class="contact-box">
+        WhatsApp: <a href="https://wa.me/27602551513">+27 60 255 1513</a><br><br>
+        Email: <a href="mailto:contact.lulidigital@gmail.com">contact.lulidigital@gmail.com</a>
+    </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-inner">
-        <div>© <span id="year"></span> LuliDigital AI. All rights reserved.</div>
-        <div class="footer-links">
-          <a href="#services">AI Services</a>
-          <a href="https://digitalmarketing.lulidigital.com" target="_blank" rel="noopener">Digital Marketing</a>
-          <a href="mailto:contact.lulidigital@gmail.com">contact.lulidigital@gmail.com</a>
-        </div>
-      </div>
-    </footer>
-  </div>
+<footer>
+    © 2025 LuliDigital AI – All rights reserved.
+</footer>
 
-  <script>
-    // Set current year in footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
