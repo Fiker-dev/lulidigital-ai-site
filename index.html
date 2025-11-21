@@ -3,251 +3,256 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LuliDigital AI</title>
+<title>LuliDigital AI – Software for Busy Teams</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
     body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-        background: #0b1220;
-        color: #d1d5df;
+        background: #0f172a;
+        font-family: 'Inter', sans-serif;
+        color: #e2e8f0;
+        overflow-x: hidden;
     }
 
-    /* ---------------- NAVBAR ---------------- */
-    .navbar {
+    /* NAVBAR */
+    header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        backdrop-filter: blur(15px);
+        background: rgba(15, 23, 42, 0.65);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 18px 24px;
-        background: #0b1220;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+        padding: 18px 40px;
     }
 
     .logo {
-        font-size: 22px;
-        font-weight: 700;
-        color: white;
-    }
-    .logo-light {
-        color: #a5b4fc;
+        height: 48px;
     }
 
-    .nav-links {
-        list-style: none;
+    nav {
         display: flex;
         gap: 28px;
     }
-    .nav-links a {
-        color: white;
+
+    nav a {
+        color: #cbd5e1;
         text-decoration: none;
-        font-size: 16px;
-        transition: 0.2s;
-    }
-    .nav-links a:hover {
-        opacity: 0.7;
+        font-size: 15px;
+        transition: 0.2s ease;
     }
 
-    /* Hamburger icon */
-    .nav-toggle {
+    nav a:hover {
+        color: #22d3ee;
+    }
+
+    /* MOBILE MENU */
+    .mobile-toggle {
         display: none;
-        font-size: 28px;
-        cursor: pointer;
+        font-size: 26px;
         color: white;
+        cursor: pointer;
     }
-
-    /* ---------------- MOBILE MENU ---------------- */
-    @media (max-width: 768px) {
-        .nav-toggle {
-            display: block;
-        }
-
-        .nav-links {
+    @media(max-width: 780px) {
+        nav {
             display: none;
             flex-direction: column;
-            width: 100%;
-            background: #0f1a2e;
-            margin: 0;
-            padding: 20px 24px;
-            border-top: 1px solid #1e2b44;
+            position: absolute;
+            top: 75px;
+            right: 20px;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
-
-        .nav-links.open {
+        nav.show {
             display: flex;
         }
-
-        .nav-links li {
-            padding: 12px 0;
+        .mobile-toggle {
+            display: block;
         }
     }
 
-    /* ---------------- HERO SECTION ---------------- */
+    /* HERO */
     .hero {
-        max-width: 800px;
-        margin: 80px auto;
-        padding: 0 24px;
         text-align: center;
+        padding: 80px 40px;
+        animation: fadeIn 1.2s ease both;
     }
-
     .hero h1 {
         font-size: 48px;
-        line-height: 1.2;
-        color: white;
-        margin-bottom: 20px;
+        font-weight: 700;
+        color: #fff;
     }
-
     .hero p {
+        margin-top: 12px;
         font-size: 20px;
-        line-height: 1.5;
-        color: #9da9c5;
-        margin-bottom: 40px;
+        color: #94a3b8;
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .btn-primary {
+        margin-top: 25px;
+        background: #22d3ee;
+        padding: 15px 32px;
+        border-radius: 10px;
+        color: #0f172a;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.2s;
+        display: inline-block;
+    }
+    .btn-primary:hover {
+        background: #0ea5e9;
     }
 
-    .cta-btn {
-        display: inline-block;
-        background: #3bc9db;
-        color: #0b1220;
-        padding: 16px 32px;
-        border-radius: 12px;
-        text-decoration: none;
+    /* SERVICES GRID */
+    .services {
+        max-width: 1200px;
+        margin: auto;
+        padding: 50px 30px;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 26px;
+    }
+    .card {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(148,163,184,0.2);
+        padding: 24px;
+        border-radius: 18px;
+        box-shadow: 0px 18px 45px rgba(0,0,0,0.25);
+        animation: slideUp 0.7s ease both;
+    }
+    .card h3 {
+        color: #fff;
+        margin-top: 12px;
+        margin-bottom: 8px;
         font-size: 18px;
         font-weight: 600;
     }
-
-    /* ---------------- SERVICE GRID ---------------- */
-    .grid {
-        max-width: 1200px;
-        margin: 40px auto 100px;
-        padding: 0 24px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 22px;
-    }
-
-    .card {
-        background: #111a2e;
-        padding: 24px;
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .card h3 {
-        color: white;
-        font-size: 20px;
-        margin-bottom: 14px;
-    }
-
     .card ul {
         margin: 0;
         padding-left: 18px;
-        font-size: 15px;
-        color: #9aa5c7;
+        color: #94a3b8;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    .icon {
+        width: 38px;
+        height: 38px;
+        filter: invert(90%);
     }
 
-    .card ul li {
-        margin-bottom: 8px;
+    /* FOOTER */
+    footer {
+        margin-top: 60px;
+        padding: 40px;
+        text-align: center;
+        color: #94a3b8;
+        border-top: 1px solid rgba(255,255,255,0.05);
     }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes slideUp { from {opacity:0; transform:translateY(25px);} to {opacity:1; transform:translateY(0);} }
 </style>
 </head>
 
 <body>
 
-<!-- ---------------- NAVBAR ---------------- -->
-<nav class="navbar">
-    <div class="logo">LuliDigital <span class="logo-light">AI</span></div>
+<header>
+    <img src="Minimalist%20initials%20monogram%20professional%20logo%20template.png" class="logo" alt="LuliDigital Logo">
 
-    <div class="nav-toggle" id="navToggle">☰</div>
+    <div class="mobile-toggle" onclick="document.querySelector('nav').classList.toggle('show')">
+        ☰
+    </div>
 
-    <ul class="nav-links" id="navMenu">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#how">How we work</a></li>
-        <li><a href="#contact">Contact</a></li>
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="https://digitalmarketing.lulidigital.com">Marketing</a>
+        <a href="https://wa.me/27602551513">WhatsApp us</a>
+    </nav>
+</header>
 
-        <!-- UPDATED LINK HERE -->
-        <li><a href="https://digitalmarketing.lulidigital.com">Marketing</a></li>
-
-        <li><a href="https://wa.me/27602551513">WhatsApp us</a></li>
-    </ul>
-</nav>
-
-<!-- ---------------- HERO ---------------- -->
+<!-- HERO -->
 <section class="hero">
-    <h1>AI & Software<br>for Busy Teams</h1>
-    <p>
-        We build AI assistants, internal tools, mini-SaaS, and workflow automation that buy back your time.
-    </p>
-
-    <a href="https://wa.me/27602551513" class="cta-btn">Talk to us on WhatsApp</a>
+    <h1>AI & Software for Busy Teams</h1>
+    <p>We build AI assistants, internal tools, mini-SaaS, and workflow automation that buy back your time.</p>
+    <a href="https://wa.me/27602551513" class="btn-primary">Talk to us on WhatsApp</a>
 </section>
 
-<!-- ---------------- SERVICES GRID ---------------- -->
-<section id="services" class="grid">
+<!-- SERVICES -->
+<section id="services" class="services">
+    <div class="grid">
 
-    <div class="card">
-        <h3>AI Assistants & Automation</h3>
-        <ul>
-            <li>Auto replies & FAQs</li>
-            <li>Document + form drafting</li>
-            <li>Summaries of chats & emails</li>
-        </ul>
+        <div class="card">
+            <img class="icon" src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/cpu.svg">
+            <h3>AI Assistants & Automation</h3>
+            <ul>
+                <li>Auto replies & FAQs</li>
+                <li>Document drafting</li>
+                <li>Chat & email summaries</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <img class="icon" src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/book.svg">
+            <h3>RAG Knowledge Bases</h3>
+            <ul>
+                <li>Upload SOPs & PDFs</li>
+                <li>Instant referenced answers</li>
+                <li>Great for HR & training</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <img class="icon" src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/grid.svg">
+            <h3>Mini-SaaS & Internal Tools</h3>
+            <ul>
+                <li>Dashboards & client portals</li>
+                <li>Case tracking tools</li>
+                <li>Mini-CRM for leads</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <img class="icon" src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/bar-chart.svg">
+            <h3>Data Mining & Insights</h3>
+            <ul>
+                <li>Clean messy spreadsheets</li>
+                <li>Automated BI dashboards</li>
+                <li>Insights without guesswork</li>
+            </ul>
+        </div>
+
     </div>
-
-    <div class="card">
-        <h3>RAG Knowledge Bases</h3>
-        <ul>
-            <li>Upload SOPs & PDFs</li>
-            <li>Instant referenced answers</li>
-            <li>Great for HR, sales & training</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>Mini-SaaS & Internal Tools</h3>
-        <ul>
-            <li>Dashboards for tasks & clients</li>
-            <li>Client portals & updates</li>
-            <li>Mini-CRM for leads</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>Data Mining & Insights</h3>
-        <ul>
-            <li>Clean messy spreadsheets</li>
-            <li>Automated dashboards</li>
-            <li>Insights without guesswork</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>AI Presentation Maker</h3>
-        <ul>
-            <li>Investor decks</li>
-            <li>Client proposals</li>
-            <li>Training slides</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>Custom AI Builds</h3>
-        <ul>
-            <li>Workflow-specific AI</li>
-            <li>Easy for your team</li>
-            <li>Built from your real needs</li>
-        </ul>
-    </div>
-
 </section>
 
-<!-- ---------------- JAVASCRIPT ---------------- -->
+<!-- CONTACT -->
+<section id="contact" class="hero" style="padding-top:30px;">
+    <h2>Talk to Us</h2>
+    <p>WhatsApp: <a href="https://wa.me/27602551513" style="color:#22d3ee;">+27 60 255 1513</a></p>
+    <p>Email: <a href="mailto:contact.lulidigital@gmail.com" style="color:#22d3ee;">contact.lulidigital@gmail.com</a></p>
+</section>
+
+<footer>
+    © 2025 LuliDigital – All rights reserved.
+</footer>
+
 <script>
-  const navToggle = document.getElementById("navToggle");
-  const navMenu = document.getElementById("navMenu");
-
-  navToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("open");
-  });
+    // mobile nav toggle already included above
 </script>
 
 </body>
