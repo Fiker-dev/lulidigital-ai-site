@@ -1,326 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuliDigital AI – Buy Back Your Time</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LuliDigital AI</title>
 
-    <style>
-        body {
+<style>
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+        background: #0b1220;
+        color: #d1d5df;
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 24px;
+        background: #0b1220;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: white;
+    }
+    .logo-light {
+        color: #a5b4fc;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 28px;
+    }
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+    .nav-links a:hover {
+        opacity: 0.7;
+    }
+
+    /* Hamburger icon */
+    .nav-toggle {
+        display: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: white;
+    }
+
+    /* ---------------- MOBILE MENU ---------------- */
+    @media (max-width: 768px) {
+        .nav-toggle {
+            display: block;
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: #0f1a2e;
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #0f172a;
-            color: #eee;
+            padding: 20px 24px;
+            border-top: 1px solid #1e2b44;
         }
 
-        header {
+        .nav-links.open {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: rgba(15,23,42,0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 999;
         }
 
-        .logo {
-            font-weight: 700;
-            font-size: 22px;
+        .nav-links li {
+            padding: 12px 0;
         }
+    }
 
-        nav a {
-            color: #cbd5e1;
-            margin-left: 20px;
-            text-decoration: none;
-            font-size: 15px;
-        }
+    /* ---------------- HERO SECTION ---------------- */
+    .hero {
+        max-width: 800px;
+        margin: 80px auto;
+        padding: 0 24px;
+        text-align: center;
+    }
 
-        nav a:hover {
-            color: #22d3ee;
-        }
+    .hero h1 {
+        font-size: 48px;
+        line-height: 1.2;
+        color: white;
+        margin-bottom: 20px;
+    }
 
-        .hero {
-            padding: 80px 40px;
-            text-align: center;
-            max-width: 900px;
-            margin: auto;
-        }
+    .hero p {
+        font-size: 20px;
+        line-height: 1.5;
+        color: #9da9c5;
+        margin-bottom: 40px;
+    }
 
-        .hero h1 {
-            font-size: 46px;
-            font-weight: 700;
-            line-height: 1.1;
-        }
+    .cta-btn {
+        display: inline-block;
+        background: #3bc9db;
+        color: #0b1220;
+        padding: 16px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 600;
+    }
 
-        .hero p {
-            margin-top: 16px;
-            font-size: 20px;
-            color: #94a3b8;
-        }
+    /* ---------------- SERVICE GRID ---------------- */
+    .grid {
+        max-width: 1200px;
+        margin: 40px auto 100px;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 22px;
+    }
 
-        .btn-primary {
-            display: inline-block;
-            margin-top: 25px;
-            background: #22d3ee;
-            color: #0f172a;
-            padding: 14px 26px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-        }
+    .card {
+        background: #111a2e;
+        padding: 24px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
 
-        .btn-primary:hover {
-            background: #0ea5e9;
-        }
+    .card h3 {
+        color: white;
+        font-size: 20px;
+        margin-bottom: 14px;
+    }
 
-        .section {
-            padding: 80px 40px;
-            max-width: 1200px;
-            margin: auto;
-        }
+    .card ul {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 15px;
+        color: #9aa5c7;
+    }
 
-        .section-title {
-            font-size: 34px;
-            text-align: center;
-            margin-bottom: 12px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #94a3b8;
-            max-width: 700px;
-            margin: auto;
-            font-size: 16px;
-        }
-
-        .grid {
-            margin-top: 50px;
-            display: grid;
-            gap: 30px;
-        }
-
-        /* VISUAL SERVICES GRID */
-        .visual-services-grid {
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 26px;
-        }
-
-        .visual-card {
-            background: rgba(15, 23, 42, 0.92);
-            border: 1px solid rgba(148, 163, 184, 0.25);
-            border-radius: 20px;
-            padding: 26px;
-            box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.25);
-            text-align: left;
-            transition: transform 0.2s ease;
-        }
-
-        .visual-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(54, 207, 201, 0.55);
-        }
-
-        .visual-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 18px;
-            filter: invert(90%);
-        }
-
-        .visual-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .visual-body {
-            font-size: 14px;
-            color: #94a3b8;
-            margin-bottom: 14px;
-        }
-
-        .visual-list {
-            list-style: none;
-            color: #9ca3af;
-            font-size: 14px;
-            padding-left: 0;
-        }
-
-        .visual-list li {
-            margin-bottom: 7px;
-            padding-left: 16px;
-            position: relative;
-        }
-
-        .visual-list li::before {
-            content: "•";
-            color: #22d3ee;
-            position: absolute;
-            left: 0;
-        }
-
-        /* How We Work */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .step-card {
-            padding: 26px;
-            background: #1e293b;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px 40px;
-            color: #94a3b8;
-        }
-
-        .contact-box {
-            text-align: center;
-            font-size: 18px;
-            margin-top: 40px;
-        }
-
-        .contact-box a {
-            color: #22d3ee;
-        }
-    </style>
+    .card ul li {
+        margin-bottom: 8px;
+    }
+</style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">LuliDigital AI</div>
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#work">How we work</a>
-        <a href="#contact">Contact</a>
-        <a href="https://digitalmarketing.lulidigital.com">Marketing Services</a>
-        <a href="https://wa.me/27602551513">WhatsApp us</a>
-    </nav>
-</header>
+<!-- ---------------- NAVBAR ---------------- -->
+<nav class="navbar">
+    <div class="logo">LuliDigital <span class="logo-light">AI</span></div>
 
+    <div class="nav-toggle" id="navToggle">☰</div>
 
-<!-- HERO -->
+    <ul class="nav-links" id="navMenu">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How we work</a></li>
+        <li><a href="#contact">Contact</a></li>
+
+        <!-- UPDATED LINK HERE -->
+        <li><a href="https://digitalmarketing.lulidigital.com">Marketing</a></li>
+
+        <li><a href="https://wa.me/27602551513">WhatsApp us</a></li>
+    </ul>
+</nav>
+
+<!-- ---------------- HERO ---------------- -->
 <section class="hero">
-    <h1>AI & Software for Busy Teams</h1>
-    <p>We build AI assistants, internal tools, mini-SaaS, and automation systems that buy back your time.</p>
-    <a href="https://wa.me/27602551513" class="btn-primary">Talk to us on WhatsApp</a>
+    <h1>AI & Software<br>for Busy Teams</h1>
+    <p>
+        We build AI assistants, internal tools, mini-SaaS, and workflow automation that buy back your time.
+    </p>
+
+    <a href="https://wa.me/27602551513" class="cta-btn">Talk to us on WhatsApp</a>
 </section>
 
+<!-- ---------------- SERVICES GRID ---------------- -->
+<section id="services" class="grid">
 
-<!-- SERVICES -->
-<section id="services" class="section">
-    <h2 class="section-title">What We Build</h2>
-    <p class="section-subtitle">Clean, powerful, and workflow-ready AI systems designed for real businesses.</p>
-
-    <div class="grid visual-services-grid">
-
-        <article class="visual-card">
-            <img src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/cpu.svg" class="visual-icon">
-            <h3 class="visual-title">AI Assistants & Automation</h3>
-            <p class="visual-body">Your daily repetitive tasks handled automatically.</p>
-            <ul class="visual-list">
-                <li>Auto replies & FAQs</li>
-                <li>Document + form drafting</li>
-                <li>Summaries of chats, emails & PDFs</li>
-            </ul>
-        </article>
-
-        <article class="visual-card">
-            <img src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/folder.svg" class="visual-icon">
-            <h3 class="visual-title">RAG Knowledge Bases</h3>
-            <p class="visual-body">Let your team “chat” with your documents.</p>
-            <ul class="visual-list">
-                <li>Upload your SOPs & PDFs</li>
-                <li>Instant answers with references</li>
-                <li>Great for HR, sales & training</li>
-            </ul>
-        </article>
-
-        <article class="visual-card">
-            <img src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/settings.svg" class="visual-icon">
-            <h3 class="visual-title">Mini-SaaS & Internal Tools</h3>
-            <p class="visual-body">Software built around your real workflow.</p>
-            <ul class="visual-list">
-                <li>Dashboards for tasks & clients</li>
-                <li>Client portals & progress</li>
-                <li>Mini-CRM for leads</li>
-            </ul>
-        </article>
-
-        <article class="visual-card">
-            <img src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/bar-chart-2.svg" class="visual-icon">
-            <h3 class="visual-title">Data Mining & Insights</h3>
-            <p class="visual-body">Turn messy data into clear decisions.</p>
-            <ul class="visual-list">
-                <li>Clean & restructure data</li>
-                <li>Automated dashboards</li>
-                <li>Insights without guesswork</li>
-            </ul>
-        </article>
-
-        <article class="visual-card">
-            <img src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/file-text.svg" class="visual-icon">
-            <h3 class="visual-title">AI Presentation Maker</h3>
-            <p class="visual-body">Full presentations created in minutes.</p>
-            <ul class="visual-list">
-                <li>Investor decks</li>
-                <li>Client proposals</li>
-                <li>Training slides</li>
-            </ul>
-        </article>
-
-        <article class="visual-card">
-            <img src="https://cdn.jsdelivr.net/npm/feather-icons/dist/icons/zap.svg" class="visual-icon">
-            <h3 class="visual-title">Custom AI Builds</h3>
-            <p class="visual-body">If it saves time, we’ll design it.</p>
-            <ul class="visual-list">
-                <li>Workflow-specific AI</li>
-                <li>Easy for your team</li>
-                <li>Built from your real needs</li>
-            </ul>
-        </article>
-
+    <div class="card">
+        <h3>AI Assistants & Automation</h3>
+        <ul>
+            <li>Auto replies & FAQs</li>
+            <li>Document + form drafting</li>
+            <li>Summaries of chats & emails</li>
+        </ul>
     </div>
-</section>
 
-
-<!-- HOW WE WORK -->
-<section id="work" class="section">
-    <h2 class="section-title">How We Work</h2>
-    <p class="section-subtitle">A simple, fast, and practical approach to AI & automation.</p>
-
-    <div class="steps">
-        <div class="step-card">1. We study your workflow & bottlenecks</div>
-        <div class="step-card">2. We choose what saves the most time</div>
-        <div class="step-card">3. We build the assistants or tools</div>
-        <div class="step-card">4. You test it on real tasks</div>
-        <div class="step-card">5. We refine & train your team</div>
+    <div class="card">
+        <h3>RAG Knowledge Bases</h3>
+        <ul>
+            <li>Upload SOPs & PDFs</li>
+            <li>Instant referenced answers</li>
+            <li>Great for HR, sales & training</li>
+        </ul>
     </div>
-</section>
 
-
-<!-- CONTACT -->
-<section id="contact" class="section">
-    <h2 class="section-title">Talk to Us</h2>
-    <div class="contact-box">
-        WhatsApp: <a href="https://wa.me/27602551513">+27 60 255 1513</a><br><br>
-        Email: <a href="mailto:contact.lulidigital@gmail.com">contact.lulidigital@gmail.com</a>
+    <div class="card">
+        <h3>Mini-SaaS & Internal Tools</h3>
+        <ul>
+            <li>Dashboards for tasks & clients</li>
+            <li>Client portals & updates</li>
+            <li>Mini-CRM for leads</li>
+        </ul>
     </div>
+
+    <div class="card">
+        <h3>Data Mining & Insights</h3>
+        <ul>
+            <li>Clean messy spreadsheets</li>
+            <li>Automated dashboards</li>
+            <li>Insights without guesswork</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>AI Presentation Maker</h3>
+        <ul>
+            <li>Investor decks</li>
+            <li>Client proposals</li>
+            <li>Training slides</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>Custom AI Builds</h3>
+        <ul>
+            <li>Workflow-specific AI</li>
+            <li>Easy for your team</li>
+            <li>Built from your real needs</li>
+        </ul>
+    </div>
+
 </section>
 
-<footer>
-    © 2025 LuliDigital AI – All rights reserved.
-</footer>
+<!-- ---------------- JAVASCRIPT ---------------- -->
+<script>
+  const navToggle = document.getElementById("navToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("open");
+  });
+</script>
 
 </body>
 </html>
